@@ -157,3 +157,34 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+function envoier(){
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyDJXtoHbXbOpvJqJ8V_nywUFBs1U7Ub06qo6nbvi6sK85M-DWA9eVD_roDhpdrDMEv/exec'
+
+    const form = document.forms['contact-form']
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => document.getElementById("aa").innerHTML(`<ul class="testimonials-list has-scrollbar"> <li class="testimonials-item">
+      <div class="content-card" data-testimonials-item>
+
+        <figure class="testimonials-avatar-box">
+          <img src="./assets/images/avatar-5.png" alt="Jessica miller" width="60" data-testimonials-avatar>
+        </figure>
+
+        <h4 class="h4 testimonials-item-title" data-testimonials-title>my team</h4>
+
+        <div class="testimonials-text" data-testimonials-text>
+          <p>
+            My team possesses a wide range of skills in various fields, including website development, data analysis, and graphic design.
+          </p>
+        </div>
+
+      </div>
+    </li>
+    </ul>
+`))
+      .then(() => { window.location.reload(); })
+      .catch(error => console.error('Error!', error.message))
+    });
+}
